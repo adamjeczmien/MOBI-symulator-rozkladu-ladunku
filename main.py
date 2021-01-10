@@ -4,7 +4,7 @@ from MOBI_symulator_rozkladu_ladunku.poziomyEnergetyczne import *
 from MOBI_symulator_rozkladu_ladunku.rownaniaPoissona import *
 
 
-noOfPoints = 21
+noOfPoints = 15
 noOfIterations = 20
 h, grid = generateGrid(noOfPoints, tsi/2)
 psiArray = createFirstApproximation('lin', grid)
