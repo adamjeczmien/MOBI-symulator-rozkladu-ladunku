@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
-from projektMOBImikroele.stale import *
-from projektMOBImikroele.poziomyEnergetyczne import *
-from projektMOBImikroele.rownaniaPoissona import *
+from MOBI_symulator_rozkladu_ladunku.stale import *
+from MOBI_symulator_rozkladu_ladunku.poziomyEnergetyczne import *
+from MOBI_symulator_rozkladu_ladunku.rownaniaPoissona import *
 
 
 noOfPoints = 21
