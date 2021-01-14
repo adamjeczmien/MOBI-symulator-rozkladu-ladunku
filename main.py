@@ -77,7 +77,7 @@ def drawPlots(final, gridToPlot, firstApprox, noOfIterations):
     axes.set_ylim(ylim)
 
 ########################################################################################################################
-noOfPoints = 500
+noOfPoints = 100
 maxError = 1e-14
 ########################################################################################################################
 # linear
@@ -96,11 +96,15 @@ drawPlots(final, gridToPlot, firstApprox, noOfIterationsConst)
 funType = 'sqrt'
 final, gridToPlot, firstApprox, noOfIterationsSqrt, errorListSqrt = calculateForInputPrediction(funType, noOfPoints, maxError)
 drawPlots(final, gridToPlot, firstApprox, noOfIterationsSqrt)
+funType = 'log'
+final, gridToPlot, firstApprox, noOfIterationsLog, errorListLog= calculateForInputPrediction(funType, noOfPoints, maxError)
+drawPlots(final, gridToPlot, firstApprox, noOfIterationsLog)
 plt.figure()
 plt.semilogy(np.linspace(1, noOfIterationsLin, noOfIterationsLin), errorListLin, label='Przybliżenie liniową')
 plt.semilogy(np.linspace(1, noOfIterationsPoly, noOfIterationsPoly), errorListPoly, label='Przybliżenie poly2')
 plt.semilogy(np.linspace(1,noOfIterationsConst,noOfIterationsConst), errorListConst, label='Przybliżenie stałą')
 plt.semilogy(np.linspace(1,noOfIterationsSqrt,noOfIterationsSqrt), errorListSqrt, label='Przybliżenie pierwiastkiem')
+plt.semilogy(np.linspace(1,noOfIterationsLog,noOfIterationsLog), errorListLog, label='Przybliżenie logarytmem')
 plt.title('Maksymalny błąd bezwzględny w porównaniu z poprzednią iteracją')
 plt.xlabel('Numer iteracji')
 plt.ylabel('Błąd [V]')
