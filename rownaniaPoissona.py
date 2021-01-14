@@ -1,5 +1,4 @@
 import numpy as np
-import math as m
 
 def calculateBoundaryConditionsForMatrix(epsilonSi, epsilonSiO, stalaSiatki, tox):
     firstCond = epsilonSi/stalaSiatki + epsilonSiO/tox
@@ -36,7 +35,7 @@ def createFirstApproximation(fun, grid, Vg):
     elif fun == 'sqrt':
         array = np.sqrt(np.linspace(Vg,0,len(grid)))
     else:  # const
-        array = np.zeros(len(grid))+Vg
+        array = np.zeros(len(grid))
     return array
 
 
