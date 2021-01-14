@@ -1,5 +1,5 @@
 import numpy as np
-
+import math as m
 
 def calculateBoundaryConditionsForMatrix(epsilonSi, epsilonSiO, stalaSiatki, tox):
     firstCond = epsilonSi/stalaSiatki + epsilonSiO/tox
@@ -15,25 +15,28 @@ def calculateBoundaryConditionsForVector(epsilonSi, tox, Vg):
 
 def generateEyeMatrix(noOfPoints, vectorOnEye):
     eyeOnes = np.eye(noOfPoints)
-    eyeWithoutBoundaryConditions = (eyeOnes-2-vectorOnEye)*eyeOnes
+    eyeWithoutBoundaryConditions = (eyeOnes-3-vectorOnEye)*eyeOnes
     return eyeWithoutBoundaryConditions
 
 
-def generateGrid(noOfPoints,tsi):
-    h = tsi/noOfPoints
-    grid = np.linspace(0,tsi,noOfPoints)
+def generateGrid(noOfPoints,tsi,tox):
+    tsiForCalc = tsi/2
+    h = tsiForCalc/(noOfPoints-1)
+    grid = np.linspace(tox, tsiForCalc+tox, noOfPoints)
     return h, grid
 
 
-def createFirstApproximation(fun, grid):
+def createFirstApproximation(fun, grid, Vg):
     if fun == 'lin':
-        array = np.linspace(0, 1, len(grid))
+        array = np.linspace(Vg, 0, len(grid))
     elif fun == 'poly2':
-        array = np.linspace(0, 1, len(grid))**2
+        array = np.linspace(Vg, 0, len(grid))**2
     elif fun == 'log':
-        array = np.log(np.linspace(0.000001, 1, len(grid)))
+        array = abs(np.log(np.linspace(Vg, 0.1, len(grid))))
+    elif fun == 'sqrt':
+        array = np.sqrt(np.linspace(Vg,0,len(grid)))
     else:  # const
-        array = np.zeros(len(grid))
+        array = np.zeros(len(grid))+Vg
     return array
 
 
